@@ -1,3 +1,9 @@
 <div class= "content-wrapper">
-  <p>capture works!</p>
+  <mat-form-field class="camera-field">
+    <mat-select [(ngModel)]="selectedCamera" placeholder="Location">
+      <mat-option *ngFor="let camera of cameras" [value]="camera">
+        {{camera.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>

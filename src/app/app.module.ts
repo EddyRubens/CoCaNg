@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 // 3rd party modules
 import { CookieService } from 'ngx-cookie-service';
@@ -28,17 +31,27 @@ import { CaptureComponent } from './views/capture/capture.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     FormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [
-    CookieService
-  ],
+    CookieService,
+    HttpClientModule,
+    {
+        provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+        useValue: {
+            appearance: 'outline',
+            floatLabel: 'always'
+        }
+    },
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
