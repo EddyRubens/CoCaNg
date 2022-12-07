@@ -1,9 +1,41 @@
+<mat-toolbar color="primary">
+  <button mat-flat-button color="primary">
+    <mat-icon>today</mat-icon>
+    Dec-07
+  </button>
+  <button mat-flat-button color="primary">
+    <mat-icon>schedule</mat-icon>
+    0-24
+  </button>
+  <button mat-flat-button color="primary">
+    <mat-icon>camera</mat-icon>
+    01-Lab
+  </button>
+  <button mat-icon-button (click)="filters.onlyLatest = !filters.onlyLatest">
+    <mat-icon>
+      <svg *ngIf="!filters.onlyLatest" class="only-latest-svg">
+        <path fill="none" d="M0 0h25v25H0z" />
+        <path fill="#FFFFFF" d="m23 12-2.44-2.78.34-3.68-3.61-.82-1.89-3.18L12 3 8.6 1.54 6.71 4.72l-3.61.81.34 3.68L1 12l2.44 2.78-.34 3.69 3.61.82 1.89 3.18L12 21l3.4 1.46 1.89-3.18 3.61-.82-.34-3.68L23 12zm-10 5h-2v-2h2v2zm0-4h-2V7h2v6z" />
+        <path fill="#FFFFFF" d="m 2.3949798,1.3457269 -1.27,1.27 C 6.438857,7.9540209 13.910632,15.332345 21.85498,23.345727 l 1.27,-1.27 C 16.21498,15.165727 9.3049801,8.2557269 2.3949798,1.3457269 Z" />
+        <path fill="#c2185b" d="M 6.2320194,1.9962367 22.960833,19.182677 21.683291,20.56827 4.4968499,3.4326773 Z" />
+      </svg>
+      <svg *ngIf="filters.onlyLatest" class="only-latest-svg">
+        <path fill="none" d="M0 0h25v25H0z" />
+        <path fill="#FFFFFF" d="m23 12-2.44-2.78.34-3.68-3.61-.82-1.89-3.18L12 3 8.6 1.54 6.71 4.72l-3.61.81.34 3.68L1 12l2.44 2.78-.34 3.69 3.61.82 1.89 3.18L12 21l3.4 1.46 1.89-3.18 3.61-.82-.34-3.68L23 12zm-10 5h-2v-2h2v2zm0-4h-2V7h2v6z" />
+      </svg>
+    </mat-icon>
+  </button>
+
+  <button mat-icon-button>
+    <mat-icon>search</mat-icon>
+  </button>
+
+  <span class="toolbar-spacer"></span>
+
+  <button mat-icon-button>
+    <mat-icon>more_vert</mat-icon>
+  </button>
+</mat-toolbar>
 <div class= "content-wrapper">
-  <mat-form-field class="camera-field">
-    <mat-select [(ngModel)]="selectedCamera" placeholder="Location">
-      <mat-option *ngFor="let camera of cameras" [value]="camera">
-        {{camera.name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+
 </div>

@@ -13,6 +13,10 @@ a, a:visited, a:hover, a:active {
   color:inherit;
 }
 
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
 .content-wrapper {
   padding: 10px;
 }

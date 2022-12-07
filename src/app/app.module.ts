@@ -10,6 +10,9 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 // 3rd party modules
 import { CookieService } from 'ngx-cookie-service';
@@ -39,17 +42,20 @@ import { CaptureComponent } from './views/capture/capture.component';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatCheckboxModule
   ],
   providers: [
     CookieService,
     HttpClientModule,
     {
-        provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-        useValue: {
-            appearance: 'outline',
-            floatLabel: 'always'
-        }
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: {
+        appearance: 'outline',
+        floatLabel: 'always'
+      }
     },
 ],
   bootstrap: [AppComponent]
