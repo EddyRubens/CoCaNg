@@ -1,8 +1,9 @@
 {
   "name": "co-ca-ng",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "scripts": {
     "start": "ng serve",
+    "build:prod": "ng build --configuration production --base-href https://eddyrubens.github.io/cocang/",
     "build": "ng build",
     "watch": "ng build --watch --configuration development"
   },
