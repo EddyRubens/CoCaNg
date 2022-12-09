@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
 import { Camera } from '../models/camera';
 import { HostInfo } from '../models/host-info';
+import { Capture } from '../models/capture';
 
 @Injectable({
   providedIn: 'root'
@@ -49,16 +50,17 @@ export class CoCaService {
 
   public getCamera(id: string): Observable<Camera> {
     this.reportRequest(true, this.getCamera);
-    return this.http.get<Camera>(`${this.urlPrefix}/Cameras/${id}`)
+    return this.http.get<Camera>(`${this.urlPrefix}/Cameras/${id}`, this.options)
       .pipe(map(response => {
         this.reportRequest(false, this.getCamera);
         return response;
       }));
   }
 
-  public getCaptures(filters: any) {
+  public getCaptures(filters: any): Observable<Capture[]> {
     let formattedDate: string;
 
+    this.reportRequest(true, this.getCaptures);
     if (!filters.selectedDate) {
       formattedDate = new Date().toISOString().slice(0, 10);
     } else {
@@ -70,12 +72,11 @@ export class CoCaService {
     if (!filters.selectedLocation) {
       filters.selectedLocation = 'All';
     }
-
     const url = `${this.urlPrefix}/Captures?date=${formattedDate}&hour=${filters.selectedHour}&location=${filters.selectedLocation}&onlyLatest=${filters.onlyLatest}`;
-    this.busy = true;
-    return this.http.get(url)
+
+    return this.http.get<Capture[]>(url, this.options)
       .pipe(map(response => {
-        this.busy = false;
+        this.reportRequest(false, this.getCaptures);
         return response;
       }));
   }

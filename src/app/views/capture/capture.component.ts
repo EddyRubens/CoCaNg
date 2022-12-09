@@ -3,6 +3,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 import { UnsubscribeOnDestroy } from 'src/app/components/UnsubscribeOnDestroy';
 import { Camera } from 'src/app/models/camera';
+import { Capture } from 'src/app/models/capture';
 import { CoCaService } from 'src/app/services/coca.service';
 import { StateService } from 'src/app/services/state.service';
 import { DateDialogComponent } from '../date-dialog/date-dialog.component';
@@ -22,6 +23,7 @@ export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
   public cameras: Camera[] = [];
   public hours: any[] = [];
   public selectedHour: any;
+  public captures: Capture[] = [];
 
   constructor(public cocaService: CoCaService, public dialog: MatDialog, public stateService: StateService) {
     super(); // Needed for UnsubscribeOnDestroy
@@ -81,5 +83,13 @@ export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
   public datePickerInput(event: MatDatepickerInputEvent<Date>) {
     var selectedDate = event?.value ? new Date(event.value.valueOf() + (-event.value.getTimezoneOffset() * 60 * 1000)) : new Date();
     this.filters.selectedDate = selectedDate; // Set date to UTC
+  }
+
+  public searchCaptures() {
+    this.subs.sink = this.cocaService.getCaptures(this.filters).subscribe({
+      next: captures => {
+        this.captures = captures;
+      }
+    });
   }
 }
