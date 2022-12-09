@@ -8,11 +8,11 @@ import { StateService } from 'src/app/services/state.service';
 import { DateDialogComponent } from '../date-dialog/date-dialog.component';
 
 @Component({
-  selector: 'app-capture',
-  templateUrl: './capture.component.html',
-  styleUrls: ['./capture.component.scss']
+  selector: 'app-statistics',
+  templateUrl: './statistics.component.html',
+  styleUrls: ['./statistics.component.scss']
 })
-export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
+export class StatisticsComponent extends UnsubscribeOnDestroy implements OnInit {
   @ViewChild('dateButton', { static: false }) public dateButtonRef: ElementRef | undefined;
 
   public filters = {
@@ -23,7 +23,7 @@ export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
   };
   public cameras: Camera[] = [];
 
-  constructor(public cocaService: CoCaService, public dialog: MatDialog, public stateService: StateService) {
+  constructor(public cocaService: CoCaService, public stateService: StateService, public dialog: MatDialog) {
     super(); // Needed for UnsubscribeOnDestroy
   }
 
@@ -59,4 +59,5 @@ export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
     var selectedDate = event?.value ? new Date(event.value.valueOf() + (-event.value.getTimezoneOffset() * 60 * 1000)) : new Date();
     this.filters.selectedDate = selectedDate; // Set date to UTC
   }
+
 }

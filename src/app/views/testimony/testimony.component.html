@@ -5,9 +5,8 @@
 <div class= "content-wrapper">
   <mat-form-field>
     <input matInput type="password" [(ngModel)]="exhibit">
+    <button matSuffix mat-icon-button (click)="testify()">
+      <mat-icon>beenhere</mat-icon>
+    </button>
   </mat-form-field>
-  
-  <button mat-icon-button (click)="testify()">
-    <mat-icon>beenhere</mat-icon>
-  </button>
 </div>

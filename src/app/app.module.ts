@@ -1,7 +1,10 @@
+// Angular modules
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
+// Material modules
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,17 +17,17 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenu, MatMenuModule } from '@angular/material/menu';
 
 // 3rd party modules
 import { CookieService } from 'ngx-cookie-service';
 
-import { AppRoutingModule } from './app-routing.module';
+// App modules
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { TestimonyComponent } from './views/testimony/testimony.component';
 import { CaptureComponent } from './views/capture/capture.component';
 import { DateDialogComponent } from './views/date-dialog/date-dialog.component';
+import { StatisticsComponent } from './views/statistics/statistics.component';
 
 
 @NgModule({
@@ -32,11 +35,11 @@ import { DateDialogComponent } from './views/date-dialog/date-dialog.component';
     AppComponent,
     TestimonyComponent,
     CaptureComponent,
-    DateDialogComponent
+    DateDialogComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -49,7 +52,8 @@ import { DateDialogComponent } from './views/date-dialog/date-dialog.component';
     MatNativeDateModule,
     MatDatepickerModule,
     MatCheckboxModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule
   ],
   providers: [
     CookieService,

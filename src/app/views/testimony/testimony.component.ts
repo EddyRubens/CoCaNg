@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
+import { UnsubscribeOnDestroy } from 'src/app/components/UnsubscribeOnDestroy';
+import { StateService } from 'src/app/services/state.service';
 
 @Component({
   selector: 'app-testimony',
   templateUrl: './testimony.component.html',
   styleUrls: ['./testimony.component.scss']
 })
-export class TestimonyComponent implements OnInit {
+export class TestimonyComponent extends UnsubscribeOnDestroy implements OnInit {
   public exhibit: string = '';
 
-  constructor(private cookieService: CookieService, private router: Router) {
+  constructor(private stateService: StateService) {
+    super();
   }
 
   ngOnInit(): void {
   }
 
   public testify() {
-    this.cookieService.set('exhibit', this.exhibit, { expires: new Date('2065-08-02') });
-    this.router.navigateByUrl('/capture');
+    this.stateService.testify(this.exhibit);
   }
 }

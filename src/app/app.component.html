@@ -1,1 +1,13 @@
-<router-outlet></router-outlet>
+<ng-template *ngIf="checkExhibit(); then showApp; else showTestimony">
+</ng-template>
+
+<ng-template #showTestimony>
+  <app-testimony></app-testimony>
+</ng-template>
+
+<ng-template #showApp>
+  <div [ngSwitch]="stateService.selectedPage">
+    <app-capture *ngSwitchCase="stateService.knownPagesEnum.Capture"></app-capture>
+    <app-statistics *ngSwitchCase="stateService.knownPagesEnum.Statistics"></app-statistics>
+  </div>
+</ng-template>

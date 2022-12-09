@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
+import { KnownPages } from './models/known-pages';
+import { StateService } from './services/state.service';
 
 @Component({
   selector: 'app-root',
@@ -8,18 +8,13 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private cookieService: CookieService, private router: Router, ) {
+  constructor(public stateService: StateService) {
   }
   
   ngOnInit(): void {
-    this.checkExhibit();
   }
 
-  private checkExhibit() {
-    const exhibit = this.cookieService.get('exhibit');
-    console.log(`Exh: ${exhibit}`);
-    if (!exhibit) {
-      this.router.navigate([ '/testimony' ]);
-    }
+  public checkExhibit() {
+    return this.stateService.exhibitAccepted;
   }
 }

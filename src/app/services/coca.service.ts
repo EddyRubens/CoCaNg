@@ -3,25 +3,44 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
 import { Camera } from '../models/camera';
+import { HostInfo } from '../models/host-info';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoCaService {
-  private urlPrefix = 'http://localhost:7003/api';
+  private urlPrefix = 'http://cocafa.azurewebsites.net:7003/api';
   private options = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json'
-    }),
-    withCredentials:true,
-    crossdomain:true
-  };
-  public busy = false;
+      'Content-Type':  'application/json',
+    })
+   };
+   public busy = false;
 
   constructor(private http: HttpClient) { }
 
+  public setHash(hash: string) {
+    this.options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Exhibit': hash
+      })
+    };
+  }
+
+  public getHostInfo(hash: string): Observable<HostInfo> {
+    this.reportRequest(true, this.getHostInfo);
+    this.setHash(hash);
+    return this.http.get<HostInfo>(`${this.urlPrefix}/HostInfo`, this.options)
+      .pipe(map(response => {
+        this.reportRequest(false, this.getHostInfo);
+        return response;
+      }));
+  }
+
   public getCameras(): Observable<Camera[]> {
     this.reportRequest(true, this.getCameras);
+    console.log(this.options);
     return this.http.get<Camera[]>(`${this.urlPrefix}/Cameras`, this.options)
       .pipe(map(response => {
         this.reportRequest(false, this.getCameras);
@@ -83,14 +102,6 @@ export class CoCaService {
     return this.http.get(url)
       .pipe(map(response => {
         this.busy = false;
-        return response;
-      }));
-  }
-
-  public getHostInfo() {
-    const url = `${this.urlPrefix}/HostInfo`;
-    return this.http.get(url)
-      .pipe(map(response => {
         return response;
       }));
   }
