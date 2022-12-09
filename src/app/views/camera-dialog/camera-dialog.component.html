@@ -1,7 +1,6 @@
 <mat-dialog-content>
-  <mat-calendar [(selected)]="selectedDate"></mat-calendar>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="selectedDate" cdkFocusInitial>OK</button>
+  <button mat-button [mat-dialog-close]="selectedCamera" cdkFocusInitial>OK</button>
 </mat-dialog-actions>

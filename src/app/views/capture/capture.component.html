@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <button #dateButton mat-flat-button color="primary" (click)="selectDate()">
+  <button #dateButton mat-flat-button color="primary" (click)="selectDate($event)">
     <mat-icon>today</mat-icon>
     {{filters.selectedDate| date:'MMM-dd'}}
   </button>
@@ -7,7 +7,7 @@
     <mat-icon>schedule</mat-icon>
     0-24
   </button>
-  <button mat-flat-button color="primary">
+  <button mat-flat-button color="primary" (click)="selectCamera($event)" #cameraButton>
     <mat-icon>camera</mat-icon>
     01-Lab
   </button>

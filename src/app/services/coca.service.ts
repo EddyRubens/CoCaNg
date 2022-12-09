@@ -40,7 +40,6 @@ export class CoCaService {
 
   public getCameras(): Observable<Camera[]> {
     this.reportRequest(true, this.getCameras);
-    console.log(this.options);
     return this.http.get<Camera[]>(`${this.urlPrefix}/Cameras`, this.options)
       .pipe(map(response => {
         this.reportRequest(false, this.getCameras);

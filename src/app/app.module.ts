@@ -27,6 +27,7 @@ import { AppComponent } from './app.component';
 import { TestimonyComponent } from './views/testimony/testimony.component';
 import { CaptureComponent } from './views/capture/capture.component';
 import { DateDialogComponent } from './views/date-dialog/date-dialog.component';
+import { CameraDialogComponent } from './views/camera-dialog/camera-dialog.component';
 import { StatisticsComponent } from './views/statistics/statistics.component';
 
 
@@ -36,6 +37,7 @@ import { StatisticsComponent } from './views/statistics/statistics.component';
     TestimonyComponent,
     CaptureComponent,
     DateDialogComponent,
+    CameraDialogComponent,
     StatisticsComponent
   ],
   imports: [
