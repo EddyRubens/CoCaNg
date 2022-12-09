@@ -3,5 +3,6 @@ export interface Camera {
   name: string;
   rotation: number;
   timeZone: string;
+  icon: string;
   parameters: any;
 }

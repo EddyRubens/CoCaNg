@@ -3,14 +3,32 @@
     <mat-icon>today</mat-icon>
     {{filters.selectedDate| date:'MMM-dd'}}
   </button>
-  <button mat-flat-button color="primary">
+  <button mat-flat-button color="primary" [matMenuTriggerFor]="hourMenu">
     <mat-icon>schedule</mat-icon>
     0-24
   </button>
-  <button mat-flat-button color="primary" (click)="selectCamera($event)" #cameraButton>
+  <mat-menu #hourMenu="matMenu">
+    <button mat-menu-item (click)="filters.selectedHour = -1">
+      <span>0-24</span>
+    </button>
+    <button mat-menu-item *ngFor="let hour of hours(24)" (click)="filters.selectedHour = parseInt(hour)">
+      <span>{{hour}}</span>
+    </button>
+  </mat-menu>
+  <button mat-flat-button color="primary" [matMenuTriggerFor]="cameraMenu" #cameraButton>
     <mat-icon>camera</mat-icon>
-    01-Lab
+    {{filters.selectedCamera}}
   </button>
+  <mat-menu #cameraMenu="matMenu">
+    <button mat-menu-item (click)="filters.selectedCamera='All'">
+      <mat-icon>done_all</mat-icon>
+      <span>All</span>
+    </button>
+    <button mat-menu-item *ngFor="let camera of cameras" (click)="filters.selectedCamera=camera.name">
+      <mat-icon>{{camera.icon}}</mat-icon>
+      <span>{{camera.name}}</span>
+    </button>
+  </mat-menu>
   <button mat-icon-button (click)="filters.onlyLatest = !filters.onlyLatest">
     <mat-icon>
       <svg *ngIf="!filters.onlyLatest" class="only-latest-svg">
