@@ -3,18 +3,17 @@
     <mat-icon>today</mat-icon>
     {{filters.selectedDate| date:'MMM-dd'}}
   </button>
+
   <button mat-flat-button color="primary" [matMenuTriggerFor]="hourMenu">
     <mat-icon>schedule</mat-icon>
-    0-24
+    {{selectedHour.name}}
   </button>
   <mat-menu #hourMenu="matMenu">
-    <button mat-menu-item (click)="filters.selectedHour = -1">
-      <span>0-24</span>
-    </button>
-    <button mat-menu-item *ngFor="let hour of hours(24)" (click)="filters.selectedHour = parseInt(hour)">
-      <span>{{hour}}</span>
+    <button mat-menu-item *ngFor="let hour of hours" (click)="selectHour(hour)">
+      <span>{{hour.name}}</span>
     </button>
   </mat-menu>
+
   <button mat-flat-button color="primary" [matMenuTriggerFor]="cameraMenu" #cameraButton>
     <mat-icon>camera</mat-icon>
     {{filters.selectedCamera}}

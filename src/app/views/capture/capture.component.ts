@@ -20,6 +20,8 @@ export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
     onlyLatest: true
   };
   public cameras: Camera[] = [];
+  public hours: any[] = [];
+  public selectedHour: any;
 
   constructor(public cocaService: CoCaService, public dialog: MatDialog, public stateService: StateService) {
     super(); // Needed for UnsubscribeOnDestroy
@@ -27,6 +29,7 @@ export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
 
   ngOnInit(): void {
     this.loadCameras();
+    this.buildHours(24);
   }
 
   private loadCameras() {
@@ -37,18 +40,21 @@ export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
     });
   }
 
-  public parseInt(input: string) {
-    return parseInt(input);
-  }
+  private buildHours(length: number) {
+    this.hours = new Array(length + 1);
 
-  public hours(length: number): string[] {
-    const returnValue = new Array(length);
-
+    this.hours[0] = {
+      id: -1,
+      name: '00-24'
+    };
     for (let i = 0; i < length; i++) {
-      returnValue[i] = String(i).padStart(2, '0');
+      this.hours[i + 1] = {
+        id: i,
+        name: String(i).padStart(2, '0')
+      };
     }
 
-    return returnValue;
+    this.selectedHour = this.hours[0];
   }
 
   public selectDate(event: any) {
@@ -65,6 +71,11 @@ export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
         this.filters.selectedDate = selectedDate;
       }
     });
+  }
+
+  public selectHour(hour: any) {
+    this.selectedHour = hour;
+    this.filters.selectedHour = hour.id;
   }
 
   public datePickerInput(event: MatDatepickerInputEvent<Date>) {
