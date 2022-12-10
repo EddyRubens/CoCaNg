@@ -7,7 +7,7 @@
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item *ngFor="let page of stateService.knownPages" (click)="stateService.selectedPage=page.id">
+    <button mat-menu-item *ngFor="let page of stateService.getToolbarMenuItems()" (click)="stateService.selectedPage=page.id">
       {{page.name}}
     </button>
   </mat-menu>

@@ -1,11 +1,11 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="paddingless-toolbar">
   <button #dateButton mat-flat-button color="primary" (click)="selectDate($event)">
-    <mat-icon>today</mat-icon>
+    <mat-icon *ngIf="!isMobile()">today</mat-icon>
     {{filters.selectedDate| date:'MMM-dd'}}
   </button>
 
   <button mat-flat-button color="primary" [matMenuTriggerFor]="hourMenu">
-    <mat-icon>schedule</mat-icon>
+    <mat-icon *ngIf="!isMobile()">schedule</mat-icon>
     {{selectedHour.name}}
   </button>
   <mat-menu #hourMenu="matMenu">
@@ -15,7 +15,7 @@
   </mat-menu>
 
   <button mat-flat-button color="primary" [matMenuTriggerFor]="cameraMenu" #cameraButton>
-    <mat-icon>camera</mat-icon>
+    <mat-icon *ngIf="!isMobile()">camera</mat-icon>
     {{filters.selectedCamera}}
   </button>
   <mat-menu #cameraMenu="matMenu">
@@ -28,6 +28,7 @@
       <span>{{camera.name}}</span>
     </button>
   </mat-menu>
+
   <button mat-icon-button (click)="filters.onlyLatest = !filters.onlyLatest">
     <mat-icon>
       <svg *ngIf="!filters.onlyLatest" class="only-latest-svg">
@@ -53,7 +54,7 @@
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item *ngFor="let page of stateService.knownPages" (click)="stateService.selectedPage=page.id">
+    <button mat-menu-item *ngFor="let page of stateService.getToolbarMenuItems()" (click)="stateService.selectedPage=page.id">
       {{page.name}}
     </button>
   </mat-menu>

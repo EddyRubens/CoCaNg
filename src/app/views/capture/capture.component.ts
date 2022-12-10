@@ -102,19 +102,18 @@ export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
     return `rotate(${capture.camera.rotation}deg)`;
   }
 
-  private isMobile(): boolean {
+  public isMobile(): boolean {
     return (window.screen.width < 1000);
   }
 
   public openCaptureInfoDialog(capture: any, event: MouseEvent): void {
     const filters = this.filters;
+    const element = document.elementFromPoint(event.x, event.y);
+    const rect = element ? element.getBoundingClientRect(): { top: 0, left: 0 };
     if (event) {
       this.dialog.open(CaptureInfoDialogComponent, {
         width: '350px',
-        position: {
-          top: `${event.clientY}px`,
-          left: `${event.clientX}px`
-        },
+        position: {top: (rect.top + 10) + 'px', left: (rect.left + 10) + 'px' },
         data: { filters, capture }
       });
     } else {

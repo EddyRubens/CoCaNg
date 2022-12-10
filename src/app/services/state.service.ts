@@ -20,6 +20,10 @@ export class StateService implements OnDestroy {
       }    
     }
   }
+
+  public getToolbarMenuItems(): any[] {
+    return this.knownPages.filter(p => p.name != 'DetailedCapture');
+  }
   
   public testify(exhibit: string) {
     var shajs = require('sha.js');

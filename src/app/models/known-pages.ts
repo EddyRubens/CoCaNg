@@ -1,4 +1,5 @@
 export enum KnownPages {
   Capture,
-  Statistics
+  Statistics,
+  DetailedCapture
 }
