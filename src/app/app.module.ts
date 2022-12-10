@@ -17,7 +17,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatMenu, MatMenuModule } from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 
 // 3rd party modules
 import { CookieService } from 'ngx-cookie-service';
@@ -27,8 +27,8 @@ import { AppComponent } from './app.component';
 import { TestimonyComponent } from './views/testimony/testimony.component';
 import { CaptureComponent } from './views/capture/capture.component';
 import { DateDialogComponent } from './views/date-dialog/date-dialog.component';
+import { CaptureInfoDialogComponent } from './views/capture-info-dialog/capture-info-dialog';
 import { StatisticsComponent } from './views/statistics/statistics.component';
-
 
 @NgModule({
   declarations: [
@@ -36,6 +36,7 @@ import { StatisticsComponent } from './views/statistics/statistics.component';
     TestimonyComponent,
     CaptureComponent,
     DateDialogComponent,
+    CaptureInfoDialogComponent,
     StatisticsComponent
   ],
   imports: [

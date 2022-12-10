@@ -58,6 +58,10 @@
     </button>
   </mat-menu>
 </mat-toolbar>
-<div class= "content-wrapper">
-
-</div>
+<span class="capture-container" *ngFor="let capture of captures">
+  <img [src]="capture.url"
+    [style.width]="getWidth()"
+    [style.transform]="getTransform(capture)"
+    (click)="openCaptureInfoDialog(capture, $event)">
+  <span class="image-title">{{capture.localTime}} - {{capture.camera.name}}</span>
+</span>

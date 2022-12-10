@@ -8,3 +8,15 @@
   height: 40px;
   scale: 0.75;
 }
+
+.capture-container {
+  position: relative;
+}
+
+.image-title {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  font-size:10px;
+  text-shadow:1px 1px 1px black;
+}

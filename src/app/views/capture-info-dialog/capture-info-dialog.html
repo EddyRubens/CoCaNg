@@ -1,0 +1,7 @@
+<div *ngIf="data?.capture?.file" class="info">{{data.capture.file}}</div>
+<div *ngIf="data?.capture?.time" class="info">Server time: {{data.capture.time}}</div>
+<div *ngIf="data?.capture?.camera?.id" class="info">Camera id: {{data.capture.camera.id}}</div>
+<div *ngIf="data?.capture?.camera?.name" class="info">Camera name: {{data.capture.camera.name}}</div>
+<div *ngIf="data?.capture?.size" class="info">Size: {{data.capture.size}}</div>
+<div *ngIf="data?.capture?.localTime" class="info">Local time: {{data.capture.localTime}}</div>
+<!-- TODO: enable <a [routerLink] = "['/capture-details']" [queryParams] = "{date: data.capture.date, time: data.capture.time, cameraId: data.capture.camera.id, selectedDate: data.filters.selectedDate, selectedHour: data.filters.selectedHour, selectedLocation: data.filters.selectedLocation, onlyLatest: data.filters.onlyLatest}" class="nav-link">Details</a> -->

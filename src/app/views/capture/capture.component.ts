@@ -6,6 +6,7 @@ import { Camera } from 'src/app/models/camera';
 import { Capture } from 'src/app/models/capture';
 import { CoCaService } from 'src/app/services/coca.service';
 import { StateService } from 'src/app/services/state.service';
+import { CaptureInfoDialogComponent } from '../capture-info-dialog/capture-info-dialog';
 import { DateDialogComponent } from '../date-dialog/date-dialog.component';
 
 @Component({
@@ -91,5 +92,36 @@ export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
         this.captures = captures;
       }
     });
+  }
+
+  public getWidth(): string {
+    return this.isMobile() ? '100%' : '50%';
+  }
+
+  public getTransform(capture: Capture) {
+    return `rotate(${capture.camera.rotation}deg)`;
+  }
+
+  private isMobile(): boolean {
+    return (window.screen.width < 1000);
+  }
+
+  public openCaptureInfoDialog(capture: any, event: MouseEvent): void {
+    const filters = this.filters;
+    if (event) {
+      this.dialog.open(CaptureInfoDialogComponent, {
+        width: '350px',
+        position: {
+          top: `${event.clientY}px`,
+          left: `${event.clientX}px`
+        },
+        data: { filters, capture }
+      });
+    } else {
+      this.dialog.open(CaptureInfoDialogComponent, {
+        width: '350px',
+        data: { filters, capture }
+      });
+    }
   }
 }
