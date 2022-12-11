@@ -11,7 +11,7 @@ import { DetailedCapture } from '../models/detailed-capture';
   providedIn: 'root'
 })
 export class CoCaService {
-  private urlPrefix = 'http://cocafa.azurewebsites.net:7003/api';
+  private urlPrefix = 'https://cocafa.azurewebsites.net/api';
   private options = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
