@@ -74,10 +74,10 @@ export class CoCaService {
     if (!filters.selectedHour) {
       filters.selectedHour = -1;
     }
-    if (!filters.selectedLocation) {
-      filters.selectedLocation = 'All';
+    if (!filters.selectedCamera) {
+      filters.selectedCamera = 'All';
     }
-    const url = `${this.urlPrefix}/Captures?date=${formattedDate}&hour=${filters.selectedHour}&location=${filters.selectedLocation}&onlyLatest=${filters.onlyLatest}`;
+    const url = `${this.urlPrefix}/Captures?date=${formattedDate}&hour=${filters.selectedHour}&camera=${filters.selectedCamera}&onlyLatest=${filters.onlyLatest}`;
 
     return this.http.get<Capture[]>(url, this.options)
       .pipe(map(response => {

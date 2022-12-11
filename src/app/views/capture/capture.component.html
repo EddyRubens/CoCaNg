@@ -16,14 +16,14 @@
 
   <button mat-flat-button color="primary" [matMenuTriggerFor]="cameraMenu" #cameraButton>
     <mat-icon *ngIf="!isMobile()">camera</mat-icon>
-    {{filters.selectedCamera}}
+    {{ selectedCamera ? selectedCamera.name : "All" }}
   </button>
   <mat-menu #cameraMenu="matMenu">
-    <button mat-menu-item (click)="filters.selectedCamera='All'">
+    <button mat-menu-item (click)="selectedCamera = undefined">
       <mat-icon>done_all</mat-icon>
       <span>All</span>
     </button>
-    <button mat-menu-item *ngFor="let camera of cameras" (click)="filters.selectedCamera=camera.name">
+    <button mat-menu-item *ngFor="let camera of cameras" (click)="selectedCamera=camera">
       <mat-icon>{{camera.icon}}</mat-icon>
       <span>{{camera.name}}</span>
     </button>
@@ -67,3 +67,6 @@
     (click)="openCaptureInfoDialog(capture, 'capture' + i, $event)">
   <span class="image-title">{{capture.localTime}} - {{capture.camera.name}}</span>
 </span>
+<div class= "content-wrapper">
+  <p *ngIf="!captures || captures.length === 0">Nothing to show</p>
+</div>

@@ -24,6 +24,7 @@ export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
   public cameras: Camera[] = [];
   public hours: any[] = [];
   public selectedHour: any;
+  public selectedCamera: Camera | undefined;
   public captures: Capture[] = [];
 
   constructor(public cocaService: CoCaService, public dialog: MatDialog, public stateService: StateService) {
@@ -87,6 +88,11 @@ export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
   }
 
   public searchCaptures() {
+    if (!this.selectedCamera) {
+      this.filters.selectedCamera = 'All';
+    } else {
+      this.filters.selectedCamera = this.selectedCamera.id;
+    }
     this.subs.sink = this.cocaService.getCaptures(this.filters).subscribe({
       next: captures => {
         this.captures = captures;
