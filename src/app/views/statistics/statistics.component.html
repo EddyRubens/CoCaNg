@@ -13,5 +13,42 @@
   </mat-menu>
 </mat-toolbar>
 <div class= "content-wrapper">
+  <h1>Overall statistics</h1>
+  <div class="info">Client: {{appName}} {{appVersion}} ({{(appDate | date : 'yyyy-MM-ddTHH:mm:ss.SSS' )}})</div>
+  <div class="info">Server: {{hostInfo?.app}} {{hostInfo?.version}}</div>
+  <br>
+  <div class="info">Capture count: {{statistics?.captureCount}}</div>
+  <div class="info">Total size: {{statistics?.totalSize}}</div>
+  <br>
+  <h1>Location statistics</h1>
+  <div *ngFor="let locationStatistic of statistics?.locationStatistics">
+    <div class="location-header">{{locationStatistic.name}} ({{locationStatistic.id}})</div>
+    <div class="info">Oldest capture: {{locationStatistic.oldestCapture}}</div>
+    <div class="info">Newest capture: {{locationStatistic.newestCapture}}</div>
+    <div class="info">Capture count: {{locationStatistic.captureCount}}</div>
+    <div *ngIf="locationStatistic?.activeDuration" class="info">Active duration: {{locationStatistic.activeDuration}}</div>
+    <div class="info">Total size: {{locationStatistic.totalSize}}</div>
+    <div *ngIf="locationStatistic?.duration" class="info">Duration since first capture: {{locationStatistic.duration}}</div>
+    <div class="info">Possible captures: {{locationStatistic.possibleCaptures}}</div>
+    <div class="info">Estimate missing captures: {{locationStatistic.estimateForMissingCaptures}}</div>
+    <br>
+  </div>
+  <h1>Date statistics</h1>
+  <div *ngFor="let dateStatistic of statistics?.dateStatistics">
+    <div class="location-header">{{dateStatistic.statisticsDate}}</div>
+    <div class="info">Capture count: {{dateStatistic.captureCount}}</div>
+    <div class="info">Total size: {{dateStatistic.totalSize}}</div>
+    <div class="info">Locations:<span *ngFor="let location of dateStatistic.locations"> {{location}}</span></div>
+    <br>
+  </div>
 
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" [value]="selectedDate" (dateInput)="datePickerInput($event)" >
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  
+  <button mat-icon-button (click)="deleteClick()">
+    <mat-icon>delete_forever</mat-icon>
+  </button>
 </div>

@@ -30,7 +30,7 @@ export class StateService implements OnDestroy {
   public testify(exhibit: string) {
     var shajs = require('sha.js');
     var exhibitHash = new shajs.sha256().update(exhibit).digest('hex');
-    this.subs.sink = this.cocaService.getHostInfo(exhibitHash).subscribe({
+    this.subs.sink = this.cocaService.getHostInfoAndSetHash(exhibitHash).subscribe({
       next: hostInfo => {
         this.cookieService.set('exhibit', exhibitHash, { expires: new Date('2065-08-02') });
       },

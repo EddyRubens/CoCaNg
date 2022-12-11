@@ -30,9 +30,13 @@ export class CoCaService {
     };
   }
 
-  public getHostInfo(hash: string): Observable<HostInfo> {
-    this.reportRequest(true, this.getHostInfo);
+  public getHostInfoAndSetHash(hash: string): Observable<HostInfo> {
     this.setHash(hash);
+    return this.getHostInfo()
+;  }
+
+  public getHostInfo(): Observable<HostInfo> {
+    this.reportRequest(true, this.getHostInfo);
     return this.http.get<HostInfo>(`${this.urlPrefix}/HostInfo`, this.options)
       .pipe(map(response => {
         this.reportRequest(false, this.getHostInfo);
@@ -83,26 +87,24 @@ export class CoCaService {
   }
 
   public deleteCaptures(date: Date) {
-    // let formattedDate: string;
+    let formattedDate: string;
 
-    // if (date) {
-    //   formattedDate = date.toISOString().slice(0, 10);
-    //   const url = `${this.urlPrefix}/Captures?date=${formattedDate}`;
-    //   this.busy = true;
-    //   return this.http.delete(url)
-    //     .pipe(map(response => {
-    //       this.busy = false;
-    //       return response;
-    //     }));
-    // }
+    formattedDate = date.toISOString().slice(0, 10);
+    const url = `${this.urlPrefix}/Captures?date=${formattedDate}`;
+    this.reportRequest(true, this.deleteCaptures);
+    return this.http.delete(url, this.options)
+      .pipe(map(response => {
+        this.reportRequest(false, this.deleteCaptures);
+        return response;
+      }));
   }
 
   public getStatistics() {
     this.reportRequest(true, this.getStatistics);
     const url = `${this.urlPrefix}/Statistics`;
-    return this.http.get(url)
+    return this.http.get(url, this.options)
       .pipe(map(response => {
-        this.busy = false; // TODO: fix this when doing statistics
+        this.reportRequest(false, this.getStatistics);
         return response;
       }));
   }
