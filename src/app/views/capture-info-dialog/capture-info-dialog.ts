@@ -26,6 +26,16 @@ export class CaptureInfoDialogComponent implements OnInit {
     });
   }
 
+  public openFullscreen(elementId: string) {
+    const element = document.getElementById(elementId);
+
+    if (element) {
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      }
+    }
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }

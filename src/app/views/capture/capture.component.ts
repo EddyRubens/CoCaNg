@@ -106,7 +106,7 @@ export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
     return (window.screen.width < 1000);
   }
 
-  public openCaptureInfoDialog(capture: any, event: MouseEvent): void {
+  public openCaptureInfoDialog(capture: any, captureId: string, event: MouseEvent): void {
     const filters = this.filters;
     const element = document.elementFromPoint(event.x, event.y);
     const rect = element ? element.getBoundingClientRect(): { top: 0, left: 0 };
@@ -114,7 +114,7 @@ export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
       this.dialog.open(CaptureInfoDialogComponent, {
         width: '350px',
         position: {top: (rect.top + 10) + 'px', left: (rect.left + 10) + 'px' },
-        data: { filters, capture }
+        data: { filters, captureId, capture }
       });
     } else {
       this.dialog.open(CaptureInfoDialogComponent, {
