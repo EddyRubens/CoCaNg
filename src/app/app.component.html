@@ -9,5 +9,6 @@
   <div [ngSwitch]="stateService.selectedPage">
     <app-capture *ngSwitchCase="stateService.knownPagesEnum.Capture"></app-capture>
     <app-statistics *ngSwitchCase="stateService.knownPagesEnum.Statistics"></app-statistics>
+    <app-detailed-capture *ngSwitchCase="stateService.knownPagesEnum.DetailedCapture"></app-detailed-capture>
   </div>
 </ng-template>

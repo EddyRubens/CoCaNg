@@ -1,0 +1,29 @@
+export interface CameraParameters {
+  deepSleepDuration: number;
+  framesize: number;
+  quality: number;
+  brightness: number;
+  contrast: number;
+  saturation: number;
+  sharpness: number;
+  denoise: number;
+  specialEffect: number;
+  wbMode: number;
+  awb: number;
+  awbGain: number;
+  aec: number;
+  aeC2: number;
+  aeLevel: number;
+  aecValue: number;
+  agc: number;
+  agcGain: number;
+  gainCeiling: number;
+  bpc: number;
+  wpc: number;
+  rawGma: number;
+  lenc: number;
+  hMirror: number;
+  vFlip: number;
+  dcw: number;
+  colorBar: number;
+}

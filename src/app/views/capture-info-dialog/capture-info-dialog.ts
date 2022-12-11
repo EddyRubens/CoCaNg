@@ -1,7 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { OnInit } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
+import { StateService } from 'src/app/services/state.service';
+import { Capture } from 'src/app/models/capture';
+import { KnownPages } from 'src/app/models/known-pages';
 
 @Component({
   selector: 'app-capture-info-dialog',
@@ -10,20 +12,16 @@ import { NavigationStart, Router } from '@angular/router';
 })
 export class CaptureInfoDialogComponent implements OnInit {
 
-  constructor(
-    public dialogRef: MatDialogRef<CaptureInfoDialogComponent>,
-    private router: Router,
+  constructor(private stateService: StateService, public dialogRef: MatDialogRef<CaptureInfoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        console.log(event.url);
-        if (event.url.startsWith('/capture-details')) {
-          this.dialogRef.close();
-        }
-      }
-    });
+  }
+
+  public openDetailedCapture(capture: Capture) {
+    this.stateService.selectedCapture = capture; // Prepare data
+    this.stateService.selectedPage = KnownPages.DetailedCapture; // Display DetailedCapture view
+    this.dialogRef.close(); // Close dialog
   }
 
   public openFullscreen(elementId: string) {

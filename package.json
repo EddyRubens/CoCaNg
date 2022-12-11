@@ -1,6 +1,6 @@
 {
   "name": "co-ca-ng",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "scripts": {
     "start": "ng serve",
     "build:prod": "ng build --configuration production --base-href https://eddyrubens.github.io/CoCaNg/",

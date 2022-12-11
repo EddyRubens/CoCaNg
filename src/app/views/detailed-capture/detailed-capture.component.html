@@ -1,0 +1,46 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>  
+  <span class="title">Capture details</span>
+</mat-toolbar>
+
+<div class="capture-details-content">
+  <div class="info">{{detailedCapture?.camera?.name}} - {{detailedCapture?.camera?.id}} - {{detailedCapture?.localTime}}</div>
+</div>
+<img class="full-width-image" [style.transform]="getTransform()" src="{{detailedCapture?.url}}">
+<div class="capture-details-content">
+  <div class="info">Size: {{detailedCapture?.size}}</div>
+  <div class="info">Sketch version: {{detailedCapture?.version}}</div>
+  <div class="info">Log:</div>
+  <div class="log-line" *ngFor="let line of detailedCapture?.logLines">{{line}}</div>
+  <div class="info">Used camera parameters:</div>
+  <div class="log-line">DeepSleepDuration: {{detailedCapture?.usedCameraParameters?.deepSleepDuration}}</div>
+  <div class="log-line">Framesize: {{detailedCapture?.usedCameraParameters?.framesize}}</div>
+  <div class="log-line">Quality: {{detailedCapture?.usedCameraParameters?.quality}}</div>
+  <div class="log-line">Brightness: {{detailedCapture?.usedCameraParameters?.brightness}}</div>
+  <div class="log-line">Contrast: {{detailedCapture?.usedCameraParameters?.contrast}}</div>
+  <div class="log-line">Saturation: {{detailedCapture?.usedCameraParameters?.saturation}}</div>
+  <div class="log-line">Sharpness: {{detailedCapture?.usedCameraParameters?.sharpness}}</div>
+  <div class="log-line">Denoise: {{detailedCapture?.usedCameraParameters?.denoise}}</div>
+  <div class="log-line">SpecialEffect: {{detailedCapture?.usedCameraParameters?.specialEffect}}</div>
+  <div class="log-line">WBMode: {{detailedCapture?.usedCameraParameters?.wbMode}}</div>
+  <div class="log-line">AWB: {{detailedCapture?.usedCameraParameters?.awb}}</div>
+  <div class="log-line">AWBGain: {{detailedCapture?.usedCameraParameters?.awbGain}}</div>
+  <div class="log-line">AEC: {{detailedCapture?.usedCameraParameters?.aec}}</div>
+  <div class="log-line">AEC2: {{detailedCapture?.usedCameraParameters?.aeC2}}</div>
+  <div class="log-line">AELevel: {{detailedCapture?.usedCameraParameters?.aeLevel}}</div>
+  <div class="log-line">AECValue: {{detailedCapture?.usedCameraParameters?.aecValue}}</div>
+  <div class="log-line">AGC: {{detailedCapture?.usedCameraParameters?.agc}}</div>
+  <div class="log-line">AGCGain: {{detailedCapture?.usedCameraParameters?.agcGain}}</div>
+  <div class="log-line">GainCeiling: {{detailedCapture?.usedCameraParameters?.gainCeiling}}</div>
+  <div class="log-line">BPC: {{detailedCapture?.usedCameraParameters?.bpc}}</div>
+  <div class="log-line">WPC: {{detailedCapture?.usedCameraParameters?.wpc}}</div>
+  <div class="log-line">RawGma: {{detailedCapture?.usedCameraParameters?.rawGma}}</div>
+  <div class="log-line">Lenc: {{detailedCapture?.usedCameraParameters?.lenc}}</div>
+  <div class="log-line">HMirror: {{detailedCapture?.usedCameraParameters?.hMirror}}</div>
+  <div class="log-line">VFlip: {{detailedCapture?.usedCameraParameters?.vFlip}}</div>
+  <div class="log-line">DCW: {{detailedCapture?.usedCameraParameters?.dcw}}</div>
+  <div class="log-line">ColorBar: {{detailedCapture?.usedCameraParameters?.colorBar}}</div>
+</div>
+

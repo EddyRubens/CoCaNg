@@ -8,5 +8,8 @@
   <button mat-icon-button (click)="openFullscreen(data.captureId)">
     <mat-icon>fullscreen</mat-icon>
   </button>
-  <!-- TODO: enable <a [routerLink] = "['/capture-details']" [queryParams] = "{date: data.capture.date, time: data.capture.time, cameraId: data.capture.camera.id, selectedDate: data.filters.selectedDate, selectedHour: data.filters.selectedHour, selectedLocation: data.filters.selectedLocation, onlyLatest: data.filters.onlyLatest}" class="nav-link">Details</a> -->
+  <button mat-icon-button (click)="openDetailedCapture(data.capture)">
+    <mat-icon>loupe</mat-icon>
+  </button>
+
 </div>

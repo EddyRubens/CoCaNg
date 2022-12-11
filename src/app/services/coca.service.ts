@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Camera } from '../models/camera';
 import { HostInfo } from '../models/host-info';
 import { Capture } from '../models/capture';
+import { DetailedCapture } from '../models/detailed-capture';
 
 @Injectable({
   providedIn: 'root'
@@ -97,21 +98,21 @@ export class CoCaService {
   }
 
   public getStatistics() {
+    this.reportRequest(true, this.getStatistics);
     const url = `${this.urlPrefix}/Statistics`;
-    this.busy = true;
     return this.http.get(url)
       .pipe(map(response => {
-        this.busy = false;
+        this.busy = false; // TODO: fix this when doing statistics
         return response;
       }));
   }
 
-  public getCaptureDetails(date: string, time: string, locationId: string) {
-    const url = `${this.urlPrefix}/DetailedCapture?date=${date}&time=${time}&locationId=${locationId}`;
-    this.busy = true;
-    return this.http.get(url)
+  public getDetailedCapture(date: string, time: string, id: string): Observable<DetailedCapture> {
+    this.reportRequest(true, this.getDetailedCapture, id);
+    const url = `${this.urlPrefix}/DetailedCaptures?date=${date}&time=${time}&locationId=${id}`;
+    return this.http.get<DetailedCapture>(url, this.options)
       .pipe(map(response => {
-        this.busy = false;
+        this.reportRequest(false, this.getDetailedCapture);
         return response;
       }));
   }

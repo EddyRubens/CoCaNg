@@ -1,6 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { SubSink } from 'subsink';
+import { Capture } from '../models/capture';
 import { KnownPages } from '../models/known-pages';
 import { CoCaService } from './coca.service';
 
@@ -12,6 +13,7 @@ export class StateService implements OnDestroy {
   public selectedPage = KnownPages.Capture;
   public knownPagesEnum = KnownPages;
   public knownPages: any[] = [];
+  public selectedCapture: Capture | undefined;
 
   constructor(private cookieService: CookieService, private cocaService: CoCaService) {
     for (var knownPage in KnownPages) { // Build object array from enum, see https://www.angularjswiki.com/angular/names-of-enums-typescript/

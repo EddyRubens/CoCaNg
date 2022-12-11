@@ -18,6 +18,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // 3rd party modules
 import { CookieService } from 'ngx-cookie-service';
@@ -26,6 +27,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AppComponent } from './app.component';
 import { TestimonyComponent } from './views/testimony/testimony.component';
 import { CaptureComponent } from './views/capture/capture.component';
+import { DetailedCaptureComponent } from './views/detailed-capture/detailed-capture.component';
 import { DateDialogComponent } from './views/date-dialog/date-dialog.component';
 import { CaptureInfoDialogComponent } from './views/capture-info-dialog/capture-info-dialog';
 import { StatisticsComponent } from './views/statistics/statistics.component';
@@ -35,6 +37,7 @@ import { StatisticsComponent } from './views/statistics/statistics.component';
     AppComponent,
     TestimonyComponent,
     CaptureComponent,
+    DetailedCaptureComponent,
     DateDialogComponent,
     CaptureInfoDialogComponent,
     StatisticsComponent
@@ -54,7 +57,8 @@ import { StatisticsComponent } from './views/statistics/statistics.component';
     MatDatepickerModule,
     MatCheckboxModule,
     MatDialogModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSnackBarModule
   ],
   providers: [
     CookieService,

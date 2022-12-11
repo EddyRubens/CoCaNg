@@ -109,6 +109,9 @@ export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
   public openCaptureInfoDialog(capture: any, captureId: string, event: MouseEvent): void {
     const filters = this.filters;
     const element = document.elementFromPoint(event.x, event.y);
+    if (element) {
+      element.scrollIntoView();
+    }
     const rect = element ? element.getBoundingClientRect(): { top: 0, left: 0 };
     if (event) {
       this.dialog.open(CaptureInfoDialogComponent, {
