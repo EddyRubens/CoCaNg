@@ -34,7 +34,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/index.html",
+  "start_url": "https://eddyrubens.github.io/CoCaNg/",
   "display": "fullscreen",
   "theme_color": "#c2185b",
   "background_color": "#c2185b"
