@@ -60,6 +60,8 @@
     </button>
   </mat-menu>
 </mat-toolbar>
+<mat-progress-bar *ngIf="cocaService.busy" color="accent" class="isMobile() ? 'progress-bar-mobile' : 'progress-bar'" mode="indeterminate">
+</mat-progress-bar>
 <span class="capture-container" *ngFor="let capture of captures; let i=index;">
   <img [id]="'capture' + i"
     [src]="capture.url"

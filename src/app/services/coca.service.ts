@@ -16,8 +16,8 @@ export class CoCaService {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
     })
-   };
-   public busy = false;
+  };
+  public busy = false;
 
   constructor(private http: HttpClient) { }
 
