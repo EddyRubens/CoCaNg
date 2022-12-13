@@ -6,6 +6,7 @@ import { Camera } from '../models/camera';
 import { HostInfo } from '../models/host-info';
 import { Capture } from '../models/capture';
 import { DetailedCapture } from '../models/detailed-capture';
+import { formatDate } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -67,9 +68,11 @@ export class CoCaService {
 
     this.reportRequest(true, this.getCaptures);
     if (!filters.selectedDate) {
-      formattedDate = new Date().toISOString().slice(0, 10);
+      formattedDate = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
+      console.log(`Formatted date 1: ${formattedDate}`);
     } else {
-      formattedDate = filters.selectedDate.toISOString().slice(0, 10);
+      formattedDate = formatDate(filters.selectedDate, 'yyyy-MM-dd', 'en-US');
+      console.log(`Formatted date 2: ${formattedDate}`);
     }
     if (!filters.selectedHour) {
       filters.selectedHour = -1;
@@ -89,7 +92,8 @@ export class CoCaService {
   public deleteCaptures(date: Date) {
     let formattedDate: string;
 
-    formattedDate = date.toISOString().slice(0, 10);
+    formattedDate = formatDate(date, 'yyyy-MM-dd', 'en-US');
+    console.log(`Formatted date 3: ${formattedDate}`)
     const url = `${this.urlPrefix}/Captures?date=${formattedDate}`;
     this.reportRequest(true, this.deleteCaptures);
     return this.http.delete(url, this.options)

@@ -81,7 +81,10 @@ export class StatisticsComponent extends UnsubscribeOnDestroy implements OnInit 
   }
   
   public datePickerInput(event: MatDatepickerInputEvent<Date>) {
-    this.selectedDate = event?.value ? new Date(event.value.valueOf() + (-event.value.getTimezoneOffset() * 60 * 1000)) : new Date();
+    if (event?.value) {
+      this.selectedDate = new Date(new Date(event.value).setHours(0,0,0,0));
+      console.log(this.selectedDate);
+    }
   }
 
   public deleteClick() {

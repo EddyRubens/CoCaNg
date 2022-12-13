@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 import { UnsubscribeOnDestroy } from 'src/app/components/UnsubscribeOnDestroy';
 import { Camera } from 'src/app/models/camera';
@@ -16,7 +15,7 @@ import { DateDialogComponent } from '../date-dialog/date-dialog.component';
 })
 export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
   public filters = {
-    selectedDate: new Date(new Date().valueOf() + (-(new Date()).getTimezoneOffset() * 60 * 1000)),
+    selectedDate: new Date(new Date().setHours(0,0,0,0)), // Midnight
     selectedHour: -1,
     selectedCamera: 'All',
     onlyLatest: true
@@ -26,6 +25,7 @@ export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
   public selectedHour: any;
   public selectedCamera: Camera | undefined;
   public captures: Capture[] = [];
+  private reloadNeeded = true;
 
   constructor(public cocaService: CoCaService, public dialog: MatDialog, public stateService: StateService) {
     super(); // Needed for UnsubscribeOnDestroy
@@ -64,15 +64,19 @@ export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
   public selectDate(event: any) {
     const element = document.elementFromPoint(event.x, event.y);
     const rect = element ? element.getBoundingClientRect(): { top: 0, left: 0 };
+    const selectedDate = this.filters.selectedDate;
     const dialogRef = this.dialog.open(DateDialogComponent, {
       position: {top: (rect.top + 27) + 'px', left: (rect.left - 30) + 'px' },
       hasBackdrop: true,
       enterAnimationDuration: '0ms',
-      exitAnimationDuration: '0ms'
+      exitAnimationDuration: '0ms',
+      data: { selectedDate }
     });
     this.subs.sink = dialogRef.afterClosed().subscribe(selectedDate => {
       if (selectedDate) {
         this.filters.selectedDate = selectedDate;
+        console.log(`Selected date: ${this.filters.selectedDate}`);
+        this.reloadNeeded = true;
       }
     });
   }
@@ -80,11 +84,6 @@ export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
   public selectHour(hour: any) {
     this.selectedHour = hour;
     this.filters.selectedHour = hour.id;
-  }
-
-  public datePickerInput(event: MatDatepickerInputEvent<Date>) {
-    var selectedDate = event?.value ? new Date(event.value.valueOf() + (-event.value.getTimezoneOffset() * 60 * 1000)) : new Date();
-    this.filters.selectedDate = selectedDate; // Set date to UTC
   }
 
   public getSelectedCameraNumber(): string {
