@@ -1,7 +1,7 @@
 {
   "name": "CoCa Progressive Web App",
   "short_name": "cocang",
-  "description": "Progressive Web App for CoCa.",
+  "description": "Progressive Web App for CoCa. See https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Installable_PWAs",
   "icons": [
     {
       "src": "assets/icon-48-48.png",
@@ -20,12 +20,12 @@
     },
     {
       "src": "assets/icon-144-144.png",
-      "sizes": "144-144",
+      "sizes": "144x144",
       "type": "image/png"
     },
     {
       "src": "assets/icon-192-192.png",
-      "sizes": "192-192",
+      "sizes": "192x192",
       "type": "image/png"
     },
     {
@@ -34,7 +34,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "https://eddyrubens.github.io/CoCaNg/",
+  "start_url": "index.html",
   "display": "fullscreen",
   "theme_color": "#c2185b",
   "background_color": "#c2185b"
