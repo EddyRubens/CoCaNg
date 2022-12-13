@@ -16,7 +16,8 @@
 
   <button mat-flat-button color="primary" [matMenuTriggerFor]="cameraMenu" #cameraButton>
     <mat-icon *ngIf="!isMobile()">camera</mat-icon>
-    {{ selectedCamera ? selectedCamera.name : "All" }}
+    <div class="selected-camera-number">{{getSelectedCameraNumber()}}</div>
+    <div class="selected-camera-title">{{getSelectedCameraTitle()}}</div>
   </button>
   <mat-menu #cameraMenu="matMenu">
     <button mat-menu-item (click)="selectedCamera = undefined">

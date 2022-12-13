@@ -87,6 +87,32 @@ export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
     this.filters.selectedDate = selectedDate; // Set date to UTC
   }
 
+  public getSelectedCameraNumber(): string {
+    var returnValue = '';
+
+    if (this.selectedCamera) {
+      if (/^[0-9][0-9]-/.test(this.selectedCamera.name)) {
+        returnValue = this.selectedCamera.name.slice(0, 2);
+      }
+    }
+    
+    return returnValue;
+  }
+
+  public getSelectedCameraTitle(): string {
+    var returnValue = 'All';
+
+    if (this.selectedCamera) {
+      if (/^[0-9][0-9]-/.test(this.selectedCamera.name)) {
+        returnValue = this.selectedCamera.name.slice(3);
+      } else {
+        returnValue = this.selectedCamera.name;
+      }
+    }
+
+    return returnValue;
+  }
+
   public searchCaptures() {
     if (!this.selectedCamera) {
       this.filters.selectedCamera = 'All';
