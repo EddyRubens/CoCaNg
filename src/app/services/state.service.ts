@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { EventEmitter, Injectable, OnDestroy, Output } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { SubSink } from 'subsink';
 import { Capture } from '../models/capture';
@@ -9,11 +9,23 @@ import { CoCaService } from './coca.service';
   providedIn: 'root'
 })
 export class StateService implements OnDestroy {
+  @Output() selectPageChanged = new EventEmitter<KnownPages>();
+
   public subs = new SubSink(); // The subscription sink object that stores all subscriptions
-  public selectedPage = KnownPages.Capture;
   public knownPagesEnum = KnownPages;
   public knownPages: any[] = [];
   public selectedCapture: Capture | undefined;
+  private _selectedPage = KnownPages.Capture;
+
+  public set selectedPage(value: KnownPages) {
+    console.log(`Selected page: ${value}`);
+    this._selectedPage = value;
+    this.selectPageChanged.emit(this.selectedPage);
+  }
+
+  public get selectedPage(): KnownPages {
+    return this._selectedPage;
+  }
 
   constructor(private cookieService: CookieService, private cocaService: CoCaService) {
     for (var knownPage in KnownPages) { // Build object array from enum, see https://www.angularjswiki.com/angular/names-of-enums-typescript/

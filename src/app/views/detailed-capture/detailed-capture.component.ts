@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { UnsubscribeOnDestroy } from 'src/app/components/UnsubscribeOnDestroy';
 import { DetailedCapture } from 'src/app/models/detailed-capture';
 import { KnownPages } from 'src/app/models/known-pages';
@@ -22,7 +21,16 @@ export class DetailedCaptureComponent extends UnsubscribeOnDestroy implements On
   }
 
   ngOnInit(): void {
+    this.stateService.selectPageChanged.subscribe(selectedPage =>  {
+      if (selectedPage === KnownPages.DetailedCapture) {
+        this.initializeView();
+      }
+    });
+  }
+
+  public initializeView(): void {
     if (this.stateService.selectedCapture) {
+      this.detailedCapture = undefined; // Delete old capture first
       this.loadDetailedCapture(this.stateService.selectedCapture.date, this.stateService.selectedCapture.time,
         this.stateService.selectedCapture.camera.id);
     } else {
@@ -49,7 +57,6 @@ export class DetailedCaptureComponent extends UnsubscribeOnDestroy implements On
 
   public goBack()
   {
-    //TODO: check if there is a way to keep the state (selected images) on the Capture page
     this.stateService.selectedPage = KnownPages.Capture; // Display Capture view
   }
 }

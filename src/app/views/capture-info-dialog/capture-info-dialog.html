@@ -5,9 +5,6 @@
   <div *ngIf="data?.capture?.camera?.name" class="info">Camera name: {{data.capture.camera.name}}</div>
   <div *ngIf="data?.capture?.size" class="info">Size: {{data.capture.size}}</div>
   <div *ngIf="data?.capture?.localTime" class="info">Local time: {{data.capture.localTime}}</div>
-  <button mat-icon-button (click)="openFullscreen(data.captureId)">
-    <mat-icon>fullscreen</mat-icon>
-  </button>
   <button mat-icon-button (click)="openDetailedCapture(data.capture)">
     <mat-icon>loupe</mat-icon>
   </button>

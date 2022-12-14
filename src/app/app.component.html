@@ -6,9 +6,7 @@
 </ng-template>
 
 <ng-template #showApp>
-  <div [ngSwitch]="stateService.selectedPage">
-    <app-capture *ngSwitchCase="stateService.knownPagesEnum.Capture"></app-capture>
-    <app-statistics *ngSwitchCase="stateService.knownPagesEnum.Statistics"></app-statistics>
-    <app-detailed-capture *ngSwitchCase="stateService.knownPagesEnum.DetailedCapture"></app-detailed-capture>
-  </div>
+  <app-capture [hidden]="stateService.selectedPage != stateService.knownPagesEnum.Capture"></app-capture>
+  <app-statistics [hidden]="stateService.selectedPage != stateService.knownPagesEnum.Statistics"></app-statistics>
+  <app-detailed-capture [hidden]="stateService.selectedPage != stateService.knownPagesEnum.DetailedCapture"></app-detailed-capture>
 </ng-template>

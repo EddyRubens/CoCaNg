@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { UnsubscribeOnDestroy } from 'src/app/components/UnsubscribeOnDestroy';
 import { Camera } from 'src/app/models/camera';
 import { HostInfo } from 'src/app/models/host-info';
+import { KnownPages } from 'src/app/models/known-pages';
 import { CoCaService } from 'src/app/services/coca.service';
 import { StateService } from 'src/app/services/state.service';
 import { DateDialogComponent } from '../date-dialog/date-dialog.component';
@@ -43,6 +44,14 @@ export class StatisticsComponent extends UnsubscribeOnDestroy implements OnInit 
     this.appName = appName;
     this.appDate = new Date(appDate);
     this.appVersion = appVersion;
+    this.stateService.selectPageChanged.subscribe(selectedPage =>  {
+      if (selectedPage == KnownPages.Statistics) {
+        this.initializeView();
+      }
+    });
+  }
+
+  private initializeView() {
     this.loadHostInfo();
     this.loadStatistcs();
   }

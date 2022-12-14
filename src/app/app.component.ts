@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { KnownPages } from './models/known-pages';
 import { StateService } from './services/state.service';
 
 @Component({
