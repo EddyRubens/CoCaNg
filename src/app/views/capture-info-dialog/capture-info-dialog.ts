@@ -24,6 +24,15 @@ export class CaptureInfoDialogComponent implements OnInit {
     this.dialogRef.close(); // Close dialog
   }
 
+  public showAllOfThisCamera(capture: Capture) {
+    this.stateService.selectCamera(capture.camera.id);
+    this.stateService.selectHour(-1);
+    this.stateService.filters.onlyLatest = false;
+    this.stateService.searchCaptures();
+    this.stateService.selectedPage = KnownPages.Capture; // Display Capture view
+    this.dialogRef.close(); // Close dialog
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }

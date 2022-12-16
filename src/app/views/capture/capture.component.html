@@ -1,17 +1,22 @@
 <mat-toolbar color="primary" class="paddingless-toolbar">
-  <button #dateButton mat-flat-button color="primary" (click)="selectDate($event)">
+  <button #dateButton mat-flat-button color="primary" [matMenuTriggerFor]="dateMenu">
     <mat-icon *ngIf="!isMobile()">today</mat-icon>
-    {{filters.selectedDate| date:'MMM-dd'}}
+    {{stateService.filters.selectedDate| date:'MMM-dd'}}
   </button>
-
+  <mat-menu #dateMenu="matMenu">
+    <mat-calendar class="padded-menu" [(selected)]="stateService.filters.selectedDate" (selectedChange)="onSelectedDateChanged()"></mat-calendar>
+  </mat-menu>
+  
   <button mat-flat-button color="primary" [matMenuTriggerFor]="hourMenu">
     <mat-icon *ngIf="!isMobile()">schedule</mat-icon>
-    {{selectedHour.name}}
+    {{stateService.selectedHour.name}}
   </button>
   <mat-menu #hourMenu="matMenu">
-    <button mat-menu-item *ngFor="let hour of hours" (click)="selectHour(hour)">
-      <span>{{hour.name}}</span>
-    </button>
+    <div class="padded-menu">
+      <mat-chip *ngFor="let hour of stateService.hours" color="accent" (click)="onHourChanged(hour.id)">
+        <span>{{hour.name}}</span>
+      </mat-chip>
+    </div>
   </mat-menu>
 
   <button mat-flat-button color="primary" [matMenuTriggerFor]="cameraMenu" #cameraButton>
@@ -20,32 +25,34 @@
     <div class="selected-camera-title">{{getSelectedCameraTitle()}}</div>
   </button>
   <mat-menu #cameraMenu="matMenu">
-    <button mat-menu-item (click)="selectedCamera = undefined">
-      <mat-icon>done_all</mat-icon>
-      <span>All</span>
-    </button>
-    <button mat-menu-item *ngFor="let camera of cameras" (click)="selectedCamera=camera">
-      <mat-icon>{{camera.icon}}</mat-icon>
-      <span>{{camera.name}}</span>
-    </button>
+    <div class="padded-menu">
+      <mat-chip class="icon-chip" (click)="stateService.selectedCamera = undefined">
+        <mat-icon class="vertical-aligned">done_all</mat-icon>
+        All
+      </mat-chip>
+      <mat-chip class="icon-chip" *ngFor="let camera of stateService.cameras" (click)="onCameraChanged(camera.id)">
+        <mat-icon class="vertical-aligned">{{camera.icon}}</mat-icon>
+        <span>{{camera.name}}</span>
+      </mat-chip>
+    </div>
   </mat-menu>
 
-  <button mat-icon-button (click)="filters.onlyLatest = !filters.onlyLatest">
+  <button mat-icon-button (click)="onOnlyLatestChanged()">
     <mat-icon>
-      <svg *ngIf="!filters.onlyLatest" class="only-latest-svg">
+      <svg *ngIf="!stateService.filters.onlyLatest" class="only-latest-svg">
         <path fill="none" d="M0 0h25v25H0z" />
         <path fill="#FFFFFF" d="m23 12-2.44-2.78.34-3.68-3.61-.82-1.89-3.18L12 3 8.6 1.54 6.71 4.72l-3.61.81.34 3.68L1 12l2.44 2.78-.34 3.69 3.61.82 1.89 3.18L12 21l3.4 1.46 1.89-3.18 3.61-.82-.34-3.68L23 12zm-10 5h-2v-2h2v2zm0-4h-2V7h2v6z" />
         <path fill="#FFFFFF" d="m 2.3949798,1.3457269 -1.27,1.27 C 6.438857,7.9540209 13.910632,15.332345 21.85498,23.345727 l 1.27,-1.27 C 16.21498,15.165727 9.3049801,8.2557269 2.3949798,1.3457269 Z" />
         <path fill="#c2185b" d="M 6.2320194,1.9962367 22.960833,19.182677 21.683291,20.56827 4.4968499,3.4326773 Z" />
       </svg>
-      <svg *ngIf="filters.onlyLatest" class="only-latest-svg">
+      <svg *ngIf="stateService.filters.onlyLatest" class="only-latest-svg">
         <path fill="none" d="M0 0h25v25H0z" />
         <path fill="#FFFFFF" d="m23 12-2.44-2.78.34-3.68-3.61-.82-1.89-3.18L12 3 8.6 1.54 6.71 4.72l-3.61.81.34 3.68L1 12l2.44 2.78-.34 3.69 3.61.82 1.89 3.18L12 21l3.4 1.46 1.89-3.18 3.61-.82-.34-3.68L23 12zm-10 5h-2v-2h2v2zm0-4h-2V7h2v6z" />
       </svg>
     </mat-icon>
   </button>
 
-  <button mat-icon-button (click)="searchCaptures()">
+  <button mat-icon-button (click)="stateService.searchCaptures()">
     <mat-icon>search</mat-icon>
   </button>
 
@@ -63,7 +70,7 @@
 <mat-progress-bar *ngIf="cocaService.busy" color="accent" class="isMobile() ? 'progress-bar-mobile' : 'progress-bar'" mode="indeterminate">
 </mat-progress-bar>
 
-<span class="capture-container" *ngFor="let capture of captures; let i=index;">
+<span class="capture-container" *ngFor="let capture of stateService.captures; let i=index;">
   <img [id]="'capture' + i"
     [src]="capture.url"
     [style.width]="getWidth()"
@@ -72,5 +79,14 @@
   <span class="image-title">{{capture.localTime}} - {{capture.camera.name}}</span>
 </span>
 <div class= "content-wrapper">
-  <p *ngIf="!captures || captures.length === 0">Nothing to show</p>
+  <div *ngIf="!stateService.captures || stateService.captures.length === 0">
+    <div *ngIf="stateService.reloadNeeded; then showClickSearch; else showNothingToShow">
+    </div>
+    <ng-template #showClickSearch>
+      Parameters changed, click the search button
+    </ng-template>
+    <ng-template #showNothingToShow>
+      Nothing to show
+    </ng-template>  
+  </div>
 </div>

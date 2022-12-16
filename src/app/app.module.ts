@@ -22,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatChipsModule } from '@angular/material/chips';
 
 // 3rd party modules
 import { CookieService } from 'ngx-cookie-service';
@@ -32,7 +33,6 @@ import { ISO_DATE_FORMATS } from './components/iso-date-formats';
 import { TestimonyComponent } from './views/testimony/testimony.component';
 import { CaptureComponent } from './views/capture/capture.component';
 import { DetailedCaptureComponent } from './views/detailed-capture/detailed-capture.component';
-import { DateDialogComponent } from './views/date-dialog/date-dialog.component';
 import { CaptureInfoDialogComponent } from './views/capture-info-dialog/capture-info-dialog';
 import { StatisticsComponent } from './views/statistics/statistics.component';
 
@@ -42,7 +42,6 @@ import { StatisticsComponent } from './views/statistics/statistics.component';
     TestimonyComponent,
     CaptureComponent,
     DetailedCaptureComponent,
-    DateDialogComponent,
     CaptureInfoDialogComponent,
     StatisticsComponent
   ],
@@ -64,7 +63,8 @@ import { StatisticsComponent } from './views/statistics/statistics.component';
     MatMenuModule,
     MatSnackBarModule,
     MatProgressBarModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    MatChipsModule
   ],
   providers: [
     CookieService,

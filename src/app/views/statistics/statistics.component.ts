@@ -8,7 +8,6 @@ import { HostInfo } from 'src/app/models/host-info';
 import { KnownPages } from 'src/app/models/known-pages';
 import { CoCaService } from 'src/app/services/coca.service';
 import { StateService } from 'src/app/services/state.service';
-import { DateDialogComponent } from '../date-dialog/date-dialog.component';
 import { MessageSnackbarComponent } from '../message-snackbar/message-snackbar.component';
 
 @Component({
@@ -73,22 +72,6 @@ export class StatisticsComponent extends UnsubscribeOnDestroy implements OnInit 
     });
   }
 
-  public selectDate() {
-    const element = this.dateButtonRef?.nativeElement;
-    const rect = element?element.getBoundingClientRect(): { top: 0, left: 0 }
-    const dialogRef = this.dialog.open(DateDialogComponent, {
-      position: {top:(rect.top+55)+'px',left:(rect.left+25)+'px'},
-      hasBackdrop: false,
-      enterAnimationDuration: '0ms',
-      exitAnimationDuration: '0ms'
-    });
-    this.subs.sink = dialogRef.afterClosed().subscribe(selectedDate => {
-      if (selectedDate) {
-        this.filters.selectedDate = selectedDate;
-      }
-    });
-  }
-  
   public datePickerInput(event: MatDatepickerInputEvent<Date>) {
     if (event?.value) {
       this.selectedDate = new Date(new Date(event.value).setHours(0,0,0,0));

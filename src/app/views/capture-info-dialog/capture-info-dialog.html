@@ -1,12 +1,18 @@
-<div class= "content-wrapper">
+<mat-dialog-content>
   <div *ngIf="data?.capture?.file" class="info">{{data.capture.file}}</div>
   <div *ngIf="data?.capture?.time" class="info">Server time: {{data.capture.time}}</div>
   <div *ngIf="data?.capture?.camera?.id" class="info">Camera id: {{data.capture.camera.id}}</div>
   <div *ngIf="data?.capture?.camera?.name" class="info">Camera name: {{data.capture.camera.name}}</div>
   <div *ngIf="data?.capture?.size" class="info">Size: {{data.capture.size}}</div>
   <div *ngIf="data?.capture?.localTime" class="info">Local time: {{data.capture.localTime}}</div>
-  <button mat-icon-button (click)="openDetailedCapture(data.capture)">
-    <mat-icon>loupe</mat-icon>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="openDetailedCapture(data.capture)">
+    <mat-icon>info_outline</mat-icon>
+    Details
   </button>
-
-</div>
+  <button mat-raised-button (click)="showAllOfThisCamera(data.capture)">
+    <mat-icon>add_a_photo</mat-icon>
+    All captures
+  </button>
+</mat-dialog-actions>
