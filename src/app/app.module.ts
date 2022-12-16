@@ -23,6 +23,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatTableModule } from '@angular/material/table';
 
 // 3rd party modules
 import { CookieService } from 'ngx-cookie-service';
@@ -35,6 +36,7 @@ import { CaptureComponent } from './views/capture/capture.component';
 import { DetailedCaptureComponent } from './views/detailed-capture/detailed-capture.component';
 import { CaptureInfoDialogComponent } from './views/capture-info-dialog/capture-info-dialog';
 import { StatisticsComponent } from './views/statistics/statistics.component';
+import { CamerasComponent } from './views/cameras/cameras.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { StatisticsComponent } from './views/statistics/statistics.component';
     CaptureComponent,
     DetailedCaptureComponent,
     CaptureInfoDialogComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    CamerasComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +67,8 @@ import { StatisticsComponent } from './views/statistics/statistics.component';
     MatSnackBarModule,
     MatProgressBarModule,
     MatMomentDateModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTableModule
   ],
   providers: [
     CookieService,

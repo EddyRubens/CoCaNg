@@ -13,7 +13,7 @@
   </button>
   <mat-menu #hourMenu="matMenu">
     <div class="padded-menu">
-      <mat-chip *ngFor="let hour of stateService.hours" color="accent" (click)="onHourChanged(hour.id)">
+      <mat-chip class="margined-chip" *ngFor="let hour of stateService.hours" color="accent" (click)="onHourChanged(hour.id)">
         <span>{{hour.name}}</span>
       </mat-chip>
     </div>
@@ -26,11 +26,11 @@
   </button>
   <mat-menu #cameraMenu="matMenu">
     <div class="padded-menu">
-      <mat-chip class="icon-chip" (click)="stateService.selectedCamera = undefined">
+      <mat-chip class="margined-chip" (click)="stateService.selectedCamera = undefined">
         <mat-icon class="vertical-aligned">done_all</mat-icon>
         All
       </mat-chip>
-      <mat-chip class="icon-chip" *ngFor="let camera of stateService.cameras" (click)="onCameraChanged(camera.id)">
+      <mat-chip class="margined-chip" *ngFor="let camera of stateService.cameras" (click)="onCameraChanged(camera.id)">
         <mat-icon class="vertical-aligned">{{camera.icon}}</mat-icon>
         <span>{{camera.name}}</span>
       </mat-chip>
