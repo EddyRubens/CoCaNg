@@ -72,7 +72,6 @@ export class CaptureComponent extends UnsubscribeOnDestroy implements OnInit {
   }
 
   public getTransform(capture: Capture) {
-    console.log(`Rotation: ${capture.camera.rotation}`);
     return `rotate(${capture.camera.rotation}deg)`;
   }
 

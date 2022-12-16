@@ -1,6 +1,6 @@
 {
   "name": "co-ca-ng",
-  "version": "2.18.0",
+  "version": "2.19.0",
   "date": "2022-12-17",
   "scripts": {
     "start": "ng serve",
