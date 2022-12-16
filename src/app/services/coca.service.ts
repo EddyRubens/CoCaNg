@@ -74,9 +74,6 @@ export class CoCaService {
       formattedDate = formatDate(filters.selectedDate, 'yyyy-MM-dd', 'en-US');
       console.log(`Formatted date 2: ${formattedDate}`);
     }
-    if (!filters.selectedHour) {
-      filters.selectedHour = -1;
-    }
     if (!filters.selectedCamera) {
       filters.selectedCamera = 'All';
     }
