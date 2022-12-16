@@ -24,6 +24,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 // 3rd party modules
 import { CookieService } from 'ngx-cookie-service';
@@ -68,7 +69,8 @@ import { CamerasComponent } from './views/cameras/cameras.component';
     MatProgressBarModule,
     MatMomentDateModule,
     MatChipsModule,
-    MatTableModule
+    MatTableModule,
+    MatSortModule
   ],
   providers: [
     CookieService,
