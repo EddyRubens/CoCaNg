@@ -15,7 +15,7 @@ import { StateService } from 'src/app/services/state.service';
 })
 export class CamerasComponent extends UnsubscribeOnDestroy implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
-  public displayedColumns = ['name', 'id', 'rotation', 'icon', 'timeZone'];
+  public displayedColumns = ['name', 'id', 'rotation', 'icon', 'iconName', 'timeZone'];
   public camerasDataSource!: MatTableDataSource<Camera>;
 
   constructor(public cocaService: CoCaService, public stateService: StateService,

@@ -28,6 +28,10 @@
     </ng-container>
     <ng-container matColumnDef="icon">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Icon</th>
+      <td mat-cell *matCellDef="let element"><mat-icon>{{element.icon}}</mat-icon></td>
+    </ng-container>
+    <ng-container matColumnDef="iconName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Icon name</th>
       <td mat-cell *matCellDef="let element">{{element.icon}}</td>
     </ng-container>
     <ng-container matColumnDef="timeZone">
