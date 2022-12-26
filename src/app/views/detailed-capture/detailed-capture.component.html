@@ -12,7 +12,7 @@
 <div class="capture-details-content">
   <div class="info">Size: {{detailedCapture?.size}}</div>
   <div class="info">Sketch version: {{detailedCapture?.version}}</div>
-  <div class="info">Sketch log of previous capture (see blob info below to correlate):</div>
+  <div class="info">Sketch log (the log is shipped with the next capture, for recent captures it may not have arrived yet):</div>
   <div class="log-line" *ngFor="let line of detailedCapture?.logLines">{{line}}</div>
   <div class="info">Used camera parameters:</div>
   <div class="log-line">DeepSleepDuration: {{detailedCapture?.usedCameraParameters?.deepSleepDuration}}</div>
