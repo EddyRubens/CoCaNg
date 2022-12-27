@@ -1,5 +1,8 @@
 .paddingless-toolbar {
   padding: 0px;
+  position: sticky;
+  top: 0; // Set the sticky toolbar to be on top of the screen
+  z-index: 1000; // Ensure that app content doesn't overlap the toolbar
 }
 
 .capture-details-content {
