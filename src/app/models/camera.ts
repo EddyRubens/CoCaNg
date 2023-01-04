@@ -5,4 +5,5 @@ export interface Camera {
   timeZone: string;
   icon: string;
   parameters: any;
+  actions: any;
 }
