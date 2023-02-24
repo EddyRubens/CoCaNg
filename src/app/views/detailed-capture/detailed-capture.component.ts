@@ -57,6 +57,6 @@ export class DetailedCaptureComponent extends UnsubscribeOnDestroy implements On
 
   public goBack()
   {
-    this.stateService.selectedPage = KnownPages.Capture; // Display Capture view
+    this.stateService.selectedPage = KnownPages.Captures; // Display Capture view
   }
 }

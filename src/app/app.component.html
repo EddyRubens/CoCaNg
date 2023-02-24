@@ -6,7 +6,7 @@
 </ng-template>
 
 <ng-template #showApp>
-  <app-capture [hidden]="stateService.selectedPage != stateService.knownPagesEnum.Capture"></app-capture>
+  <app-capture [hidden]="stateService.selectedPage != stateService.knownPagesEnum.Captures"></app-capture>
   <app-statistics [hidden]="stateService.selectedPage != stateService.knownPagesEnum.Statistics"></app-statistics>
   <app-cameras [hidden]="stateService.selectedPage != stateService.knownPagesEnum.Cameras"></app-cameras>
   <app-detailed-capture [hidden]="stateService.selectedPage != stateService.knownPagesEnum.DetailedCapture"></app-detailed-capture>

@@ -1,7 +1,7 @@
 {
   "name": "co-ca-ng",
-  "version": "2.24.0",
-  "date": "2023-01-04",
+  "version": "2.25.0",
+  "date": "2023-02-24",
   "scripts": {
     "start": "ng serve",
     "build:prod": "ng build --configuration production --base-href https://eddyrubens.github.io/CoCaNg/",

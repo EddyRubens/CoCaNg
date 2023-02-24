@@ -29,7 +29,7 @@ export class CaptureInfoDialogComponent implements OnInit {
     this.stateService.selectHour(-1);
     this.stateService.filters.onlyLatest = false;
     this.stateService.searchCaptures();
-    this.stateService.selectedPage = KnownPages.Capture; // Display Capture view
+    this.stateService.selectedPage = KnownPages.Captures; // Display Capture view
     this.dialogRef.close(); // Close dialog
   }
 

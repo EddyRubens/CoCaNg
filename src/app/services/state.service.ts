@@ -16,7 +16,7 @@ export class StateService implements OnDestroy {
   public knownPagesEnum = KnownPages;
   public knownPages: any[] = [];
   public selectedCapture: Capture | undefined;
-  private _selectedPage = KnownPages.Capture;
+  private _selectedPage = KnownPages.Captures;
   public filters = {
     selectedDate: new Date(new Date().setHours(0,0,0,0)), // Midnight
     selectedHour: -1,
